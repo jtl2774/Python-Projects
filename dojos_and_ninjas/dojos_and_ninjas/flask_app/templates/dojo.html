@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Dojo</title>
+</head>
+<!-- Home page that contains section to Create New Dojo and Displays list of all Dojos -->
+<body>
+    <div class = "d-flex justify-content-evenly">
+        <div class="">
+            <!-- Calls app route link that allows user to create dojo and post method to save form data -->
+            <form action="/dojo/create" method="post">
+                <h2>New Dojo</h2>
+                <!-- Input types for inputting information into data fields of a dojo  -->
+                <label for="name">Name:</label>
+                <input type="text" name="name" class="form-control"><br>
+                <input type="submit" class="btn btn-primary" value="Create Dojo" >
+            </form>
+        </div>
+        <div>
+            <h2>All Dojos</h2>
+            <!-- Iterates through dojos contained in all dojo list -->
+            {% for dojo in all_dojos %}
+            <p>
+                <!-- Calls app route link for showing a specific dojo's additional info based on id -->
+                <!-- For each dojo in list prints dojo name -->
+                <a href="/show/dojo/{{dojo.id}}">{{dojo.name}}</a>
+            </p>        
+            {% endfor %}
+        </div>
+    </div>    
+    <!-- Links to ninja page that displays form to add new ninja-->
+    <a href="/ninjas">Add Ninjas</a>
+</body>
+</html>
