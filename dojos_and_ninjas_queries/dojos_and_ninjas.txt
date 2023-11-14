@@ -1,0 +1,43 @@
+# Create 3 Dojos
+INSERT INTO `dojos_and_ninjas`.`dojos` (`id`, `name`, `created_at`, `updated_at`) VALUES ('1', 'LA', '2012-12-25 00:09:01', '2012-12-25 00:09:01');
+INSERT INTO `dojos_and_ninjas`.`dojos` (`id`, `name`, `created_at`, `updated_at`) VALUES ('2', 'Tokyo', '2012-12-25 00:09:01', '2012-12-25 00:09:01');
+INSERT INTO `dojos_and_ninjas`.`dojos` (`id`, `name`, `created_at`, `updated_at`) VALUES ('3', 'New York', '2012-12-25 00:09:01', '2012-12-25 00:09:01');
+
+#Delete the 3 Dojos 
+DELETE FROM `dojos_and_ninjas`.`dojos` WHERE (`id` = '3');
+DELETE FROM `dojos_and_ninjas`.`dojos` WHERE (`id` = '2');
+DELETE FROM `dojos_and_ninjas`.`dojos` WHERE (`id` = '1');
+
+#Create 3 more Dojos
+INSERT INTO `dojos_and_ninjas`.`dojos` (`id`, `name`, `created_at`, `updated_at`) VALUES ('1', 'East Coast Dojo', NOW(), NOW());
+INSERT INTO `dojos_and_ninjas`.`dojos` (`id`, `name`, `created_at`, `updated_at`) VALUES ('2', 'West Coast Dojo', NOW(), NOW());
+INSERT INTO `dojos_and_ninjas`.`dojos` (`id`, `name`, `created_at`, `updated_at`) VALUES ('3', 'Midwest Dojo', NOW(), NOW());
+
+#Create 3 ninjas that belong to first dojo 
+INSERT INTO `dojos_and_ninjas`.`ninjas` (`id`, `first_name`, `last_name`, `age`, `created_at`, `updated_at`, `dojo_id`) VALUES ('1', 'Teresa', 'Mater', '23', '2003-04-10 8:30:24', '2003-04-10 8:30:24', '1');
+INSERT INTO `dojos_and_ninjas`.`ninjas` (`id`, `first_name`, `last_name`, `age`, `created_at`, `updated_at`, `dojo_id`) VALUES ('2', 'William ', 'Somer', '45', '2010-07-24 4:13:09', '2010-07-24 4:13:09', '1');
+INSERT INTO `dojos_and_ninjas`.`ninjas` (`id`, `first_name`, `last_name`, `age`, `created_at`, `updated_at`, `dojo_id`) VALUES ('3', 'Caterina', 'Li', '34', '2013-07-19 10:34:25', '2013-07-19 10:34:25', '1');
+
+#Create 3 ninjas that belong to second dojo 
+INSERT INTO `dojos_and_ninjas`.`ninjas` (`id`, `first_name`, `last_name`, `age`, `created_at`, `updated_at`, `dojo_id`) VALUES ('4', 'Baylor', 'Gates', '19', '2016-12-13 9:06:01', '2016-12-13 9:06:01', '2');
+INSERT INTO `dojos_and_ninjas`.`ninjas` (`id`, `first_name`, `last_name`, `age`, `created_at`, `updated_at`, `dojo_id`) VALUES ('5', 'Taden', 'Moore', '28', '2018-03-23 7:23:10', '2018-03-23 7:23:10', '2');
+INSERT INTO `dojos_and_ninjas`.`ninjas` (`id`, `first_name`, `last_name`, `age`, `created_at`, `updated_at`, `dojo_id`) VALUES ('6', 'Angelina', 'Jolie', '48', '2020-09-27 2:00:00', '2020-09-27 2:00:00', '2');
+
+#Create 3 ninjas that belong to third dojo 
+INSERT INTO `dojos_and_ninjas`.`ninjas` (`id`, `first_name`, `last_name`, `age`, `created_at`, `updated_at`, `dojo_id`) VALUES ('7', 'Owen', 'Lake', '79', NOW(), NOW(), '3');
+INSERT INTO `dojos_and_ninjas`.`ninjas` (`id`, `first_name`, `last_name`, `age`, `created_at`, `updated_at`, `dojo_id`) VALUES ('8', 'Francis', 'Odega', '68', NOW(), NOW(), '3');
+INSERT INTO `dojos_and_ninjas`.`ninjas` (`id`, `first_name`, `last_name`, `age`, `created_at`, `updated_at`, `dojo_id`) VALUES ('9', 'Jazzmine', 'Butler', '45', NOW(), NOW(), '3');
+
+#Retrieve all ninjas from first dojo
+SELECT * FROM ninjas 
+WHERE dojo_id = 1;
+
+#Retrieve all ninjas from last dojo
+SELECT * FROM ninjas 
+WHERE dojo_id = 3;
+
+#Retrieve last ninja's dojo 
+SELECT name FROM dojos
+LEFT JOIN ninjas ON dojos.id = ninjas.dojo_id
+WHERE ninjas.dojo_id = 3 AND ninjas.id = 9
+
