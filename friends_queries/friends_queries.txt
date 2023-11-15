@@ -1,0 +1,38 @@
+#Create 6 new users
+INSERT INTO `friends`.`users` (`id`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES ('1', 'Larry', 'Sewell', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`users` (`id`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES ('2', 'Miguel ', 'Santos', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`users` (`id`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES ('3', 'Sandy', 'Wade', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`users` (`id`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES ('4', 'Ben', 'Ander', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`users` (`id`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES ('5', 'Tray', 'Baylor', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`users` (`id`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES ('6', 'Lillian', 'Berkeley', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+
+#Have 1 user be friends with user 2,4,6
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('1', '2', '1', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('1', '4', '2', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('1', '6', '3', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+
+#Have user 2 be friends with user 1,3,5
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('2', '1', '4', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('2', '3', '5', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('2', '5', '6', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+
+#Have user 3 be friends with user 2 and 5
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('3', '2', '7', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('3', '5', '8', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+
+#Have user 4 be friends with 3
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('4', '3', '9', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+
+#Have user 5 be friends with 1 and 6
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('5', '1', '10', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('5', '6', '11', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+
+#Have user 6 be friends with 2 and 3
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('6', '2', '12', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+INSERT INTO `friends`.`friendships` (`user_id`, `friend_id`, `id`, `created_at`, `updated_at`) VALUES ('6', '3', '13', '2022-03-25 05:34:00', '2022-03-25 05:34:00');
+
+#Display relationships created 
+SELECT users.first_name, users.last_name, users2.first_name as friend_first_name, users2.last_name as friend_last_name FROM users
+JOIN friendships ON users.id = friendships.user_id
+LEFT JOIN users as users2 ON users2.id = friendships.friend_id;
+
